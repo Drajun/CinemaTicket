@@ -78,6 +78,7 @@ namespace CinemaTicket.Controllers
         {
             if (ModelState.IsValid)
             {
+                //默认id，到数据库会自动变成自增长
                 movieModels.id = -1;
                 db.Movies.Add(movieModels);
                 db.SaveChanges();
