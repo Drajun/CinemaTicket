@@ -283,6 +283,7 @@
     <Content Include="Views\MovieManage\Details.cshtml" />
     <Content Include="Views\MovieManage\Edit.cshtml" />
     <Content Include="Views\MovieManage\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout - Movie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
