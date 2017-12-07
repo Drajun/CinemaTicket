@@ -7,9 +7,9 @@
 
 <div id="all">
     <div class="search">
-        <form>
-            <input type="text" placeholder="搜索从这里开始...">
-            <button type="submit">搜索</button>
+        <form method="get" action="@Url.Action("Index")" data-movie-ajax="true" data-movie-target="#moviesList">
+            <input type="search" placeholder="输入电影名称...">
+            <input type="submit" value="搜索">
         </form>
     </div>
 
