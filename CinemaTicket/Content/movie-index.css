@@ -1,0 +1,106 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{
+	margin: 0;
+	padding: 0;
+}
+
+.typeTags li a,#page a,.movie a{
+	color: black;
+	text-decoration: none;
+}
+
+body{
+	margin-left: 20px;
+	font-family: "楷体";
+}
+
+/*搜索框*/
+.search{
+	margin-top: 50px;
+}
+.search input {
+  width: 230px;
+  height: 40px;
+  padding-left: 10px;
+  border: 2px solid #7BA7AB;
+  border-radius: 5px;
+  outline: none;
+  background: #F9F0DA;
+  color: #9E9C9C;
+}
+.search button {
+  position:relative; 
+  top: 1px;
+  left: -60.5px;
+  width: 50px;
+  height: 40px;
+  border: none;
+  opacity: 0.5;
+  background-color: #7BA7AB;
+  color: black;
+  border-radius: 0 5px 5px 0;
+  cursor: default;
+}
+
+#all{
+	margin-left: 30px;
+}
+
+/*类型与地区过滤*/
+#filter{
+	margin-top: -40px;
+}
+.tagName{
+	margin-left: 20px;
+	color: gray;
+	float: left;
+}
+
+.typeTags{
+	float: left;
+}
+
+.typeTags li{
+	cursor: default;
+	float: left;
+	margin-right:30px ;
+	margin-left:10px ;
+	list-style-type: none;
+}
+
+.typeTags li a:hover{
+	color: gray;
+}
+
+/*当类型或页码被点击时*/
+.active{
+	border-radius: 10px;
+	padding: 3px;
+	background-color: orangered;
+}
+
+
+/*电影列表*/
+#movieList{
+	margin-top: 50px;
+}
+.movie{
+	margin-top: 30px;
+	font-size: 115%;
+	width: 190px;
+	text-align: center;
+	margin-right: 80px;
+	float: left;
+}
+
+/*分页*/
+#page{
+	float: left;
+	margin-top: 35px;
+	text-align: center;
+	width:94%;
+}
+
+#page a{
+	border: 1px solid darkgray;
+	border-radius: 10px;
+}
