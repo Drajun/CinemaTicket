@@ -1,6 +1,10 @@
 ﻿$(function () {
     //Ajax搜索
     var ajaxFormSubmit = function () {
+        $('.typeTags li a').removeClass('active');
+        $('.area li a:first').addClass('active');
+        $('.type li a:first').addClass('active');
+
         //获取表单对象
         var $form = $(this);
 
@@ -50,8 +54,8 @@ function typeSearch(searchStr, searchType) {
         $('.' + $(this).parent().parent().attr("class").split(' ')[1] + ' li a').removeClass('active');
         $(this).addClass('active');
     });
+    $("input[data-movies-autocomplete]").val("");
 
-    alert($(".area li a[class='active']").text());
     //获取参数
     if (searchType == "type") {
         var options = {

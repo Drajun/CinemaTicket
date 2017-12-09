@@ -53,12 +53,12 @@ namespace CinemaTicket.Controllers
                 movies = movies.Where(s => s.name.Contains(searchString));
             }
             //筛选地区
-            if (!String.IsNullOrEmpty(areaString))
+            if (!String.IsNullOrEmpty(areaString)&&!areaString.Equals("全部"))
             {
                 movies = movies.Where(x => x.area == areaString);
             }
             //筛选类型
-            if (!String.IsNullOrEmpty(typeString))
+            if (!String.IsNullOrEmpty(typeString) && !typeString.Equals("全部"))
             {
                 movies = movies.Where(x => x.type == typeString);
             }
