@@ -26,8 +26,4 @@
         $('#movieList div').css('opacity','0.5').hide().slice(startItem,endItem).css('display','table-row').animate({opacity:1},400);
     });
 		
-    $('.typeTags li a').bind('click', function() {
-        $('.'+$(this).parent().parent().attr("class").split(' ')[1]+' li a').removeClass('active');
-        $(this).addClass('active'); 
-    });
 });

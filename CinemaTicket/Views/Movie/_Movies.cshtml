@@ -1,0 +1,14 @@
+﻿@model IEnumerable<CinemaTicket.Models.MovieModels>
+   
+<div id="moviesList">
+    @foreach (var item in Model)
+    {
+        <div class="movie">
+            <a href="#">
+                <img src="~/@Html.DisplayFor(modelItem => item.poster)" width="190" height="280" />
+                <br />
+                <span>@Html.DisplayFor(modelItem => item.name)</span>
+            </a>
+        </div>
+    }
+</div>

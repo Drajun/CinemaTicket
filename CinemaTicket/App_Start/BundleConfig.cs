@@ -13,6 +13,7 @@ namespace CinemaTicket
                 "~/Scripts/jquery.validate*",
                 "~/Scripts/modernizr-*",
                 "~/Scripts/moives-page.js",
+                "~/Scripts/moviesSearch.js",
                 "~/Scripts/jquery-ui-{version}.js",
                 "~/Scripts/jquery.unobtrusive*"
                 ));
@@ -35,6 +36,7 @@ namespace CinemaTicket
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/jquery-ui.css",
                       "~/Content/movie-index.css",
                       "~/Content/Site.css"
                        ));
