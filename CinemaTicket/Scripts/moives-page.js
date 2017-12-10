@@ -1,5 +1,5 @@
 ﻿$(function () {
-    var rowsShown = 10;
+    var rowsShown = 12;
     var rowsTotal = $('#movieList div').length; 
     var numPages = Math.ceil(rowsTotal / rowsShown); 
 

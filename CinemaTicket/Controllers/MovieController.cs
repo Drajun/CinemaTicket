@@ -1,4 +1,5 @@
 ﻿using CinemaTicket.Models;
+using CinemaTicket.MovieControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,8 +40,8 @@ namespace CinemaTicket.Controllers
             //获取地区
             var areaList = new List<String>();
             var areaQry = from d in db.Movies
-                           orderby d.area
-                           select d.area;
+                          orderby d.releaseTime descending
+                          select d.area;
             areaList.AddRange(areaQry.Distinct());
             ViewBag.movieArea = areaList;
 
@@ -70,6 +71,36 @@ namespace CinemaTicket.Controllers
             }
 
             return View(movies);
+        }
+
+
+        private MovieInfo movieInfo = new MovieInfo();
+        public ActionResult MovieInfo(int id,string name,string type)
+        {
+            List<TinyMovie> RecommendList = new List<TinyMovie>();
+            //获取同类型的全部电影
+            var recommend = from m in db.Movies
+                         where m.type==type
+                         select m;
+            //去重复
+            recommend = recommend.Where(x => x.name != name);
+            //将当前电影信息加入List
+            foreach(var r in recommend)
+            {
+                TinyMovie tMovie = new TinyMovie(r.id, r.name, r.poster,r.type);
+                RecommendList.Add(tMovie);
+            }
+            ViewBag.Recommend = RecommendList;
+
+            //获取与id相符的电影
+            var movieByID = from m in db.Movies
+                        where m.id == id
+                        select m;
+
+            //获取电影信息
+            ViewBag.MovieInfo = HttpUtility.HtmlDecode(movieInfo.getMovieInfoByBaidu(name));
+
+            return View(movieByID);
         }
     }
 }

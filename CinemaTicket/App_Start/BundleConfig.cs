@@ -40,6 +40,7 @@ namespace CinemaTicket
                       "~/Content/movie-index.css",
                       "~/Content/Site.css"
                        ));
+
         }
     }
 }

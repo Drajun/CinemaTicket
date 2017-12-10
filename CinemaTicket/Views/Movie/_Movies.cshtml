@@ -4,7 +4,7 @@
     @foreach (var item in Model)
     {
         <div class="movie">
-            <a href="#">
+            <a target="_blank" href="/Movie/MovieInfo?id=@Html.DisplayFor(modelItem => item.id)&name=@Html.DisplayFor(modelItem => item.name)&type=@Html.DisplayFor(modelItem => item.type)">
                 <img src="~/@Html.DisplayFor(modelItem => item.poster)" width="190" height="280" />
                 <br />
                 <span>@Html.DisplayFor(modelItem => item.name)</span>
