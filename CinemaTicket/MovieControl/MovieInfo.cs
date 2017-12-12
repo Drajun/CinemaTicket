@@ -27,9 +27,16 @@ namespace CinemaTicket.MovieControl
             string pageHTML = Encoding.UTF8.GetString(pageData);
 
             int startIndex = pageHTML.IndexOf("<h2 class=\"headline-1 custom-title \">") + "<h2 class=\"headline-1 custom-title \">".Length;
-            int endIndex = pageHTML.IndexOf("<a name=\"2_2\"") - "<div class=\"anchor-list\">".Length - 1;
+            if (startIndex < 0)startIndex = pageHTML.IndexOf("div class=\"anchor - list\"", 3);
 
-            string movieInfo = pageHTML.Substring(startIndex, endIndex - startIndex);
+            int endIndex = pageHTML.IndexOf("<a name=\"2_2\"") - "<div class=\"anchor-list\">".Length - 1;
+            if (endIndex < 0) endIndex = pageHTML.IndexOf("<a name=\"职员表\"");
+
+            string movieInfo = "";
+            if ((endIndex - startIndex) <= 0)
+                movieInfo = "暂无电影信息";
+            else
+                movieInfo = pageHTML.Substring(startIndex, endIndex - startIndex);
             return movieInfo;
         }
     }
