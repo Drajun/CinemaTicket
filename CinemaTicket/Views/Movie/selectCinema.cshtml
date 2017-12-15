@@ -1,0 +1,98 @@
+﻿@model IEnumerable<CinemaTicket.Models.MovieModels>
+@{
+    ViewBag.Title = "selectCinema";
+    Layout = "~/Views/Shared/_Layout - Movie.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/movie-Info.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/movie-selectCinema.css"/>
+
+<!--
+    作者：longlou.d@foxmail.com
+    时间：2017-12-09
+    描述：电影信息头
+-->
+<div class="movieInfoHead">
+@foreach (var item in Model)
+{
+    <img id="poster" src="~/@Html.DisplayFor(modelItem => item.poster)" width="220" height="310" />
+    <table id="headInfo">
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.name)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.type)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.area)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.releaseTime)</td>
+        </tr>
+    </table>
+    <a href="/Movie/MovieInfo?id=@Html.DisplayFor(modelItem => item.id)&name=@Html.DisplayFor(modelItem => item.name)&type=@Html.DisplayFor(modelItem => item.type)" id="selectCinema">
+        电影信息
+    </a>
+}
+</div>
+
+<!--
+    作者：longlou.d@foxmail.com
+    时间：2017-12-09
+    描述：影院信息主体
+-->
+<div class="cinemaInfo">
+    <div id="date">
+        <br />
+        <br />
+        <br />
+        <p class="tagName">日期：</p>
+        <ul class="typeTags date">
+            @foreach (var item in Model)
+            {
+                foreach (string mAndD in @ViewBag.monthAndDay)
+                {
+                    if (mAndD.IndexOf("今天") != -1)
+                    {
+                        <li>
+                            <a title="@mAndD.Substring(mAndD.IndexOf("今天")+2)" onclick="times('@Html.DisplayFor(modelItem => item.price)')">@mAndD</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a title="@mAndD" onclick="times('@Html.DisplayFor(modelItem => item.price)')">@mAndD</a>
+                        </li>
+                    }
+                }
+                break;
+            }
+        </ul>
+
+        <br />
+        <br />
+        <br />
+        <p class="tagName">地区：</p>
+        <ul class="typeTags area"></ul>
+
+        <br />
+        <br />
+        <br />
+        <p class="tagName">影院：</p>
+        <ul class="typeTags cinema"></ul>
+    </div>
+
+    <br /><br /><br />
+    <div id="cinemaList">
+        <h3>放映信息</h3>
+        <table id="times">
+            <thead>
+                <tr>
+                    <th>放映时间</th>
+                    <th>票价</th>
+                    <th>选座购票</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>

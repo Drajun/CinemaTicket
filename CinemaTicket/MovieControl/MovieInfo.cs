@@ -21,23 +21,31 @@ namespace CinemaTicket.MovieControl
         //从百度百科中获取电影基本信息
         public string getMovieInfoByBaidu(string name)
         {
-            string url = "https://baike.baidu.com/item/" + name;
-         
-            Byte[] pageData = myWebClient.DownloadData(url);
-            string pageHTML = Encoding.UTF8.GetString(pageData);
+            try
+            {
+                string url = "https://baike.baidu.com/item/" + name;
 
-            int startIndex = pageHTML.IndexOf("<h2 class=\"headline-1 custom-title \">") + "<h2 class=\"headline-1 custom-title \">".Length;
-            if (startIndex < 0)startIndex = pageHTML.IndexOf("div class=\"anchor - list\"", 3);
+                Byte[] pageData = myWebClient.DownloadData(url);
+                string pageHTML = Encoding.UTF8.GetString(pageData);
 
-            int endIndex = pageHTML.IndexOf("<a name=\"2_2\"") - "<div class=\"anchor-list\">".Length - 1;
-            if (endIndex < 0) endIndex = pageHTML.IndexOf("<a name=\"职员表\"");
+                int startIndex = pageHTML.IndexOf("<h2 class=\"headline-1 custom-title \">") + "<h2 class=\"headline-1 custom-title \">".Length;
+                if (startIndex < 0) startIndex = pageHTML.IndexOf("div class=\"anchor-list\"", 2);
 
-            string movieInfo = "";
-            if ((endIndex - startIndex) <= 0)
-                movieInfo = "暂无电影信息";
-            else
-                movieInfo = pageHTML.Substring(startIndex, endIndex - startIndex);
-            return movieInfo;
+                int endIndex = pageHTML.IndexOf("<a name=\"2_2\"") - "<div class=\"anchor-list\">".Length - 1;
+                if (endIndex < 0) endIndex = pageHTML.IndexOf("<a name=\"职员表\"");
+                if (endIndex < 0) endIndex = pageHTML.IndexOf("<dl class=\"lemma-reference");
+
+                string movieInfo = "";
+                if ((endIndex - startIndex) <= 0)
+                    movieInfo = "暂无电影信息";
+                else
+                    movieInfo = pageHTML.Substring(startIndex, endIndex - startIndex);
+                return movieInfo;
+            }
+            catch (Exception e)
+            {
+                return "网络异常";
+            }
         }
     }
 }

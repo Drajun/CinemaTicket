@@ -75,32 +75,68 @@ namespace CinemaTicket.Controllers
 
 
         private MovieInfo movieInfo = new MovieInfo();
-        public ActionResult MovieInfo(int id,string name,string type)
+        public ActionResult MovieInfo(int? id,string name,string type)
         {
-            List<TinyMovie> RecommendList = new List<TinyMovie>();
-            //获取同类型的全部电影
-            var recommend = from m in db.Movies
-                         where m.type==type
-                         select m;
-            //去重复
-            recommend = recommend.Where(x => x.name != name);
-            //将当前电影信息加入List
-            foreach(var r in recommend)
+            if (id == null || name == null || type == null)
             {
-                TinyMovie tMovie = new TinyMovie(r.id, r.name, r.poster,r.type);
-                RecommendList.Add(tMovie);
+                Index(null, null, null);
+                return View("Index");
             }
-            ViewBag.Recommend = RecommendList;
+            else
+            {
+                List<TinyMovie> RecommendList = new List<TinyMovie>();
+                //获取同类型的全部电影
+                var recommend = from m in db.Movies
+                                where m.type == type
+                                select m;
+                //去重复
+                recommend = recommend.Where(x => x.name != name);
+                //将当前电影信息加入List
+                foreach (var r in recommend)
+                {
+                    TinyMovie tMovie = new TinyMovie(r.id, r.name, r.poster, r.type);
+                    RecommendList.Add(tMovie);
+                }
+                ViewBag.Recommend = RecommendList;
 
-            //获取与id相符的电影
-            var movieByID = from m in db.Movies
-                        where m.id == id
-                        select m;
+                //获取与id相符的电影
+                var movieByID = from m in db.Movies
+                                where m.id == id
+                                select m;
 
-            //获取电影信息
-            ViewBag.MovieInfo = HttpUtility.HtmlDecode(movieInfo.getMovieInfoByBaidu(name));
+                //获取电影信息
+                ViewBag.MovieInfo = HttpUtility.HtmlDecode(movieInfo.getMovieInfoByBaidu(name));
 
-            return View(movieByID);
+                return View(movieByID);
+            }
+        }
+
+        public ActionResult selectCinema(int? id, string name)
+        {
+            if (id == null || name == null )
+            {
+                Index(null, null, null);
+                return View("Index");
+            }
+            else
+            {
+                //获取与id相符的电影
+                var movieByID = from m in db.Movies
+                                where m.id == id
+                                select m;
+
+                //获取连续四天的日期
+                List<string> mAndDList = new List<string>();
+                mAndDList.Add("今天"+DateTime.Now.ToString("MM月dd日"));
+                mAndDList.Add(DateTime.Now.AddDays(1).ToString("MM月dd日"));
+                mAndDList.Add(DateTime.Now.AddDays(2).ToString("MM月dd日"));
+                mAndDList.Add(DateTime.Now.AddDays(3).ToString("MM月dd日"));
+                ViewBag.monthAndDay =mAndDList;
+
+                return View(movieByID);
+            }
+
+
         }
     }
 }

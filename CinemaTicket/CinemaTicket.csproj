@@ -227,6 +227,7 @@
     <Content Include="Content\jquery-ui.css" />
     <EmbeddedResource Include="Content\movie-index.css" />
     <Content Include="Content\movie-Info.css" />
+    <Content Include="Content\movie-selectCinema.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -238,6 +239,7 @@
     <Content Include="MovieImage\帕丁顿熊.jpg" />
     <Content Include="MovieImage\心理罪之城市之光.jpg" />
     <Content Include="MovieImage\机器之血.jpg" />
+    <Content Include="MovieImage\烟花.jpg" />
     <Content Include="MovieImage\至暗时刻.jpg" />
     <Content Include="MovieImage\芳华.jpg" />
     <Content Include="MovieImage\雷神.jpg" />
@@ -251,11 +253,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MovieControl\CinemaList.json" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.12.4.js" />
-    <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -267,6 +272,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <EmbeddedResource Include="Scripts\moives-page.js" />
     <EmbeddedResource Include="Scripts\moviesSearch.js" />
+    <Content Include="Scripts\movie-cinema.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -313,6 +319,7 @@
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\_Movies.cshtml" />
     <Content Include="Views\Movie\MovieInfo.cshtml" />
+    <Content Include="Views\Movie\selectCinema.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

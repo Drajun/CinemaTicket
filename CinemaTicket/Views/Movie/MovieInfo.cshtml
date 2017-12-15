@@ -53,11 +53,11 @@
                     <td>@Html.DisplayFor(modelItem => item.releaseTime)</td>
                 </tr>
             </table>
+            <a href="~/Movie/selectCinema/?id=@Html.DisplayFor(modelItem => item.id)&name=@Html.DisplayFor(modelItem => item.name)" id="selectCinema">
+                选择影院
+            </a>
         }
             
-    <a href="#" id="selectCinema">
-        选择影院
-    </a>
 </div>
 
 <!--

@@ -73,7 +73,7 @@ function typeSearch(searchStr, searchType) {
     
     //使用ajax请求
     $.ajax(options).done(function (data) {
-        var $target = $("#moviesList");
+        var $target = $("#movieList");
         $target.replaceWith(data);
     });
 }

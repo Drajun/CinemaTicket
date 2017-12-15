@@ -1,0 +1,74 @@
+﻿/*日期与地段过滤*/
+.movieInfoHead{
+    margin-top:-30px;
+}
+#date{
+	margin-top: -70px;
+}
+.tagName{
+	margin-left: 20px;
+	color: gray;
+	float: left;
+	/*margin-top: 17px;*/
+	margin-bottom:20px ;
+}
+
+.typeTags{
+	/*float: left;*/
+}
+
+.typeTags li{
+	cursor: default;
+	float: left;
+	margin-right:30px ;
+	margin-left:10px ;
+	list-style-type: none;
+	margin-bottom: 10px;
+}
+
+.typeTags li a:hover{
+	cursor: pointer;
+	color: gray;
+}
+
+/*当类型或页码被点击时*/
+.active{
+	border-radius: 10px;
+	padding: 3px 10px;
+	background-color: orangered;
+}
+
+/*影院列表*/
+#cinemaList{
+	margin-left: 20px;
+}
+
+#cinemaList h3{
+	float: left;
+	width: 100%;
+	padding-left: 8px;
+	border-left: 8px solid orangered;
+}
+
+#cinemaList #times{
+	display: none;
+	text-align: center;
+	width: 1200px;
+	margin: 25px auto auto 25px;
+}
+
+#times tbody{
+	font-size:90%;
+}
+
+#times tbody tr td,#times thead tr th{
+	width: 400px;
+	padding-top: 30px;
+}
+
+#times tr td a{
+	border-radius: 5px;
+	padding: 3px 16px;
+	background-color: orangered;
+	cursor: pointer;
+}

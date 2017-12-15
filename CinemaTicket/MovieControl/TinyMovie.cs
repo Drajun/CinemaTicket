@@ -19,5 +19,5 @@ namespace CinemaTicket.MovieControl
             this.poster = poster;
             this.type = type;
         }
-}
+    }
 }
