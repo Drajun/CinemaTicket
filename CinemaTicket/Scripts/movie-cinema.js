@@ -7,7 +7,7 @@
     });
 
     /*自动加载地区*/
-    $.getJSON("~/MovieControl/CinemaList.json", function (data) {
+    $.getJSON("/MovieControl/CinemaList.json",null, function (data) {
         var $cinema = $('.area');
         var strHTML = "";
         $cinema.empty();
@@ -41,14 +41,14 @@ function times(price) {
         if (isToday == "今天") {
             for (var i = h; i < 23; i += 2) {
                 strHTML += "<tr><td>" + i + ":" + "00</td>";
-                strHTML += "<td>￥" + price + "</td>"
+                strHTML += "<td>" + price + "</td>"
                 strHTML += "<td><a onclick='selectSeatClick()'>选座购票</a></td></tr>"
             }
         }
         else {
             for (var i = 10; i < 23; i += 2) {
                 strHTML += "<tr><td>" + i + ":" + "00</td>";
-                strHTML += "<td>￥" + price + "</td>"
+                strHTML += "<td>" + price + "</td>"
                 strHTML += "<td><a onclick='selectSeatClick()'>选座购票</a></td></tr>"
             }
         }
@@ -74,9 +74,10 @@ function areaClick() {
 
         /*加载影院*/
         var areaTXT = $(this).text();
-        $.getJSON("~/MovieControl/CinemaList.json", function (data) {
+        $.getJSON("/MovieControl/CinemaList.json",null, function (data) {
             var $cinema = $('.cinema');
             var strHTML = "";
+            var i = 1;
             $cinema.empty();
 
             $.each(data, function (infoIndex1, info1) {
@@ -84,12 +85,19 @@ function areaClick() {
                     $.each(info2, function (infoIndex3, info3) {
                         if (infoIndex3.toString() == areaTXT) {
                             $.each(info3, function (infoIndex4, info4) {
-                                strHTML += "<li><a onclick='cinemaClick()'>" + info4.影院 + "</a></li>"
+                                if ((i % 5) == 0) {
+                                    strHTML += "<li><a onclick='cinemaClick()'>" + info4.影院 + "</a></li><br/>"
+                                }
+                                else {
+                                    strHTML += "<li><a onclick='cinemaClick()'>" + info4.影院 + "</a></li>"
+                                }
+                                i++;
                             });
                         }
                     });
                 });
             });
+            i = 1;
             $cinema.html(strHTML);
         });
     });
@@ -102,6 +110,6 @@ function selectSeatClick() {
     var a = $('.area li .active').text();
     var c = $('.cinema li .active').text();
     var u = "?date=" + t + "&area=" + a + "&cinema=" + c;
-    var href = "~/Movie/selectSeat";
+    var href = "/Movie/selectSeat";
     window.location.href = href + u;
 }

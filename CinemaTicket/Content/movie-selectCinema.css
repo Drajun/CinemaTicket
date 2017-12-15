@@ -38,9 +38,10 @@
 	background-color: orangered;
 }
 
-/*影院列表*/
+/*放映信息*/
 #cinemaList{
 	margin-left: 20px;
+    margin-bottom:100px;
 }
 
 #cinemaList h3{
@@ -55,6 +56,10 @@
 	text-align: center;
 	width: 1200px;
 	margin: 25px auto auto 25px;
+}
+
+#cinemaList #times thead tr th{
+    text-align:center;
 }
 
 #times tbody{
