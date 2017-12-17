@@ -27,13 +27,13 @@ namespace CinemaTicket.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
         // GET: Movie
-        public ActionResult Index(string searchString,string typeString, string areaString)
+        public ActionResult Index(string searchString, string typeString, string areaString)
         {
             //获取全部电影类型
             var typeList = new List<String>();
             var typeQry = from d in db.Movies
-                           orderby d.type
-                           select d.type;
+                          orderby d.type
+                          select d.type;
             typeList.AddRange(typeQry.Distinct());
             ViewBag.movieType = typeList;
 
@@ -54,7 +54,7 @@ namespace CinemaTicket.Controllers
                 movies = movies.Where(s => s.name.Contains(searchString));
             }
             //筛选地区
-            if (!String.IsNullOrEmpty(areaString)&&!areaString.Equals("全部"))
+            if (!String.IsNullOrEmpty(areaString) && !areaString.Equals("全部"))
             {
                 movies = movies.Where(x => x.area == areaString);
             }
@@ -75,7 +75,7 @@ namespace CinemaTicket.Controllers
 
 
         private MovieInfo movieInfo = new MovieInfo();
-        public ActionResult MovieInfo(int? id,string name,string type)
+        public ActionResult MovieInfo(int? id, string name, string type)
         {
             if (id == null || name == null || type == null)
             {
@@ -113,7 +113,7 @@ namespace CinemaTicket.Controllers
 
         public ActionResult selectCinema(int? id, string name)
         {
-            if (id == null || name == null )
+            if (id == null || name == null)
             {
                 Index(null, null, null);
                 return View("Index");
@@ -127,16 +127,30 @@ namespace CinemaTicket.Controllers
 
                 //获取连续四天的日期
                 List<string> mAndDList = new List<string>();
-                mAndDList.Add("今天"+DateTime.Now.ToString("MM月dd日"));
+                mAndDList.Add("今天" + DateTime.Now.ToString("MM月dd日"));
                 mAndDList.Add(DateTime.Now.AddDays(1).ToString("MM月dd日"));
                 mAndDList.Add(DateTime.Now.AddDays(2).ToString("MM月dd日"));
                 mAndDList.Add(DateTime.Now.AddDays(3).ToString("MM月dd日"));
-                ViewBag.monthAndDay =mAndDList;
+                ViewBag.monthAndDay = mAndDList;
 
                 return View(movieByID);
             }
+        }
 
+        public ActionResult selectSeat(string date, string cinema, int? id)
+        {
+            if (String.IsNullOrEmpty(date) || String.IsNullOrEmpty(cinema) || id==null)
+            {
+                Index(null, null, null);
+                return View("Index");
+            }
+            //获取与id相符的电影
+            var movieByID = from m in db.Movies
+                            where m.id == id
+                            select m;
 
+            ViewBag.cinemaAndTime = date + "+" + cinema;
+            return View(movieByID);
         }
     }
 }

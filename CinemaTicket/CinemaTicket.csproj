@@ -227,11 +227,15 @@
     <Content Include="Content\jquery-ui.css" />
     <EmbeddedResource Include="Content\movie-index.css" />
     <Content Include="Content\movie-Info.css" />
+    <Content Include="Content\movie-seat.css" />
     <Content Include="Content\movie-selectCinema.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="Content\Site.css" />
+    <Content Include="img\已售.png" />
+    <Content Include="img\已选.png" />
+    <Content Include="img\空座.png" />
     <Content Include="MovieImage\假如王子睡着了.jpg" />
     <Content Include="MovieImage\夺金四贱客.jpg" />
     <Content Include="MovieImage\妖猫传.jpg" />
@@ -273,6 +277,7 @@
     <EmbeddedResource Include="Scripts\moives-page.js" />
     <EmbeddedResource Include="Scripts\moviesSearch.js" />
     <Content Include="Scripts\movie-cinema.js" />
+    <Content Include="Scripts\movie-seat.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -320,10 +325,10 @@
     <Content Include="Views\Movie\_Movies.cshtml" />
     <Content Include="Views\Movie\MovieInfo.cshtml" />
     <Content Include="Views\Movie\selectCinema.cshtml" />
+    <Content Include="Views\Movie\selectSeat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

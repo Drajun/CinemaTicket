@@ -15,6 +15,7 @@ namespace CinemaTicket
                 "~/Scripts/moives-page.js",
                 "~/Scripts/moviesSearch.js",
                 "~/Scripts/movie-cinema.js",
+                "~/Scripts/movie-seat.js",
                 "~/Scripts/jquery-ui-{version}.js",
                 "~/Scripts/jquery.unobtrusive*"
                 ));

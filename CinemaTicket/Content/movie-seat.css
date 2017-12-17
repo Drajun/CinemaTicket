@@ -1,0 +1,133 @@
+﻿#allSelectSeats{
+	display: table;
+	width: 100%;
+}
+
+#seats{
+	border: 1px solid gray;
+	border-bottom: 0px;
+	padding-left: 40px;
+    padding-right:20px;
+	padding-bottom: 50px;
+	padding-top:30px;
+	width: 58%;
+	display: table-cell;
+}
+
+/*座位图标提示*/
+#tip img{
+	margin-left: 70px;
+}
+#tip img:first-child{
+	margin-left: 140px;
+}
+
+#tip span{
+	position: relative;
+	top: -11px;
+	left: 7px;
+}
+
+
+/*座位选择*/
+.checkSeat table{
+	width: 100%;
+	text-align: center;
+}
+
+/*座位背景*/
+.empty{
+	width: 42px;
+	height: 37px;
+	background-image:url(../img/空座.png);
+	background-repeat: no-repeat;
+}
+
+.check{
+	width: 42px;
+	height: 37px;
+	background-image:url(../img/已选.png);
+	background-repeat: no-repeat;
+}
+
+.sell{
+	width: 42px;
+	height: 37px;
+	background-image:url(../img/已售.png);
+	background-repeat: no-repeat;
+}
+
+
+/*边栏电影信息*/
+.seat-Movie{
+	display: table-cell;
+	width: 42%;
+	padding: 25px;
+	background-color:rgba(248,248,248,1);
+}
+
+.seat-Movie img{
+	border: 3px solid white;
+}
+
+.seat-Movie .seat-movieInfo{
+	font-size: 90%;
+	position: relative;
+	top: -190px;
+	left: 125px;
+}
+
+.seat-Movie table tr td:first-child{
+	color: #555555;
+}
+
+.seat-Movie .seat-movieInfo tr:first-child td:nth-child(1){
+	font-weight: bold;
+	font-size: 30px;
+	color: black;
+	height: 60px;
+	vertical-align: top;
+}
+
+/*边栏影院信息*/
+.seat-Movie .seat-cinemaInfo{
+	font-size: 90%;
+	position: relative;
+	top: -90px;
+}
+
+/*点击座位后，已选座位信息*/
+#isSeatChecked{
+	margin-top: -70px;
+}
+
+#isSeatChecked span{
+	color: red;
+	font-size: 90%;
+	margin-left: 16px;
+}
+
+/*总价*/
+#totalPrice{
+	margin-top: 30px;
+}
+
+#totalPrice span{
+	color: red;
+}
+
+/*加入购物车和购买按钮*/
+#buyTicketBtn a{
+    margin-top:20px;
+	margin-left: 20px;
+	float: left;
+	display: block;
+	width: 120px;
+    cursor:pointer;
+	background-color: orangered;
+	border-radius: 10px;
+	padding: 5px 10px;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+}

@@ -42,14 +42,14 @@ function times(price) {
             for (var i = h; i < 23; i += 2) {
                 strHTML += "<tr><td>" + i + ":" + "00</td>";
                 strHTML += "<td>" + price + "</td>"
-                strHTML += "<td><a onclick='selectSeatClick()'>选座购票</a></td></tr>"
+                strHTML += "<td><a class='seat' title='" + i + ":" + "00' onclick='selectSeatClick()'>选座购票</a></td></tr>"
             }
         }
         else {
             for (var i = 10; i < 23; i += 2) {
                 strHTML += "<tr><td>" + i + ":" + "00</td>";
                 strHTML += "<td>" + price + "</td>"
-                strHTML += "<td><a onclick='selectSeatClick()'>选座购票</a></td></tr>"
+                strHTML += "<td><a class='seat' title='" + i + ":" + "00' onclick='selectSeatClick()'>选座购票</a></td></tr>"
             }
         }
         $times.html(strHTML);
@@ -106,10 +106,13 @@ function areaClick() {
 //点击选座购票按钮时
 //将选择信息添加到跳转下一个页面的url后
 function selectSeatClick() {
-    var t = $('.date li .active').attr('title');
-    var a = $('.area li .active').text();
-    var c = $('.cinema li .active').text();
-    var u = "?date=" + t + "&area=" + a + "&cinema=" + c;
-    var href = "/Movie/selectSeat";
-    window.location.href = href + u;
+    $('.seat').on('click', function () {
+        var t = $('.date li .active').attr('title') + "-" + $(this).attr('title');
+        //var a = $('.area li .active').text();
+        var c = $('.cinema li .active').text();
+        var id = $('#movieID').text();
+        var u = "?date=" + t + "&cinema=" + c + "&id=" + id;
+        var href = "/Movie/selectSeat";
+        window.location.href = href + u
+    });
 }

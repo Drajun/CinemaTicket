@@ -1,0 +1,108 @@
+﻿@model IEnumerable<CinemaTicket.Models.MovieModels>
+@{
+    ViewBag.Title = "selectSeat";
+    Layout = "~/Views/Shared/_Layout - Movie.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/movie-seat.css" />
+
+<div id="allSelectSeats">
+    <!--
+         作者：longlou.d@foxmail.com
+         时间：2017-12-16
+         描述：座位选择
+    -->
+    <div id="seats">
+        <div id="tip">
+            <img src="~/img/空座.png" /><span>可选座位</span>
+            <img src="~/img/已选.png" /><span>已选座位</span>
+            <img src="~/img/已售.png" /><span>已售座位</span>
+        </div>
+        <div id="checkSeat">
+            <table>
+                <tr>
+                    <td></td>
+                    <td colspan="12">
+                        <hr color="#7BA7AB" width="700px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="12" style="text-align: center;">
+                        屏幕中央
+                    </td>
+                </tr>
+
+                @for (int i = 1; i < 11; i++)
+                {
+                    <tr class="choice">
+                        <td>@i&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        @for (int j = 1; j < 13; j++)
+                        {
+                            <td><div class="empty" title="@i,@j"></div></td>
+                        }
+                    </tr>
+                }
+                
+            </table>
+        </div>
+    </div>
+
+    <!--
+        作者：longlou.d@foxmail.com
+        时间：2017-12-16
+        描述：边栏电影信息
+    -->
+    <div class="seat-Movie">
+        
+        @foreach (var item in Model)
+        {
+            <img src="~/@Html.DisplayFor(modelItem => item.poster)" width="120" height="190" />
+            <table class="seat-movieInfo">
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.name)</td>
+                    <td id="movieID" style="display: none;">@Html.DisplayFor(modelItem => item.id)</td>
+                </tr>
+                <tr>
+                    <td>类型：</td>
+                    <td>@Html.DisplayFor(modelItem => item.type)</td>
+                </tr>
+                <tr>
+                    <td>地区：</td>
+                    <td>@Html.DisplayFor(modelItem => item.area)</td>
+                </tr>
+            </table>
+
+
+            <table class="seat-cinemaInfo">
+                <tr>
+                    <td>影院：</td>
+                    <td id="cinemaName">@ViewBag.cinemaAndTime.Split('+')[1]</td>
+                </tr>
+                <tr>
+                    <td>场次：</td>
+                    <td id="movieTime">@ViewBag.cinemaAndTime.Split('+')[0]</td>
+                </tr>
+                <tr>
+                    <td>票价：</td>
+                    <td id="price">@Html.DisplayFor(modelItem => item.price)</td>
+                </tr>
+            </table>
+        }
+
+        <div id="isSeatChecked">
+            座位：
+        </div>
+
+        <p id="totalPrice">
+            总价:
+            <span>0</span>
+        </p>
+
+        <br />
+        <div id="buyTicketBtn">
+            <a onclick="buyClick('cars')">加入购物车</a>
+            <a onclick="buyClick('buy');">立即购买</a>
+        </div>
+    </div>
+
+</div>
