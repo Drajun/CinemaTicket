@@ -59,7 +59,7 @@
             <img src="~/@Html.DisplayFor(modelItem => item.poster)" width="120" height="190" />
             <table class="seat-movieInfo">
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.name)</td>
+                    <td id="movieName">@Html.DisplayFor(modelItem => item.name)</td>
                     <td id="movieID" style="display: none;">@Html.DisplayFor(modelItem => item.id)</td>
                 </tr>
                 <tr>
@@ -77,6 +77,10 @@
                 <tr>
                     <td>影院：</td>
                     <td id="cinemaName">@ViewBag.cinemaAndTime.Split('+')[1]</td>
+                </tr>
+                <tr>
+                    <td>地区：</td>
+                    <td id="cinemaArea">@ViewBag.cinemaAndTime.Split('+')[2]</td>
                 </tr>
                 <tr>
                     <td>场次：</td>

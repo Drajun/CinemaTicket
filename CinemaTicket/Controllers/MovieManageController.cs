@@ -11,6 +11,7 @@ using System.IO;
 
 namespace CinemaTicket.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class MovieManageController : Controller
     {
         private MovieDBContext db = new MovieDBContext();

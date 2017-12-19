@@ -1,0 +1,13 @@
+﻿#orderList{
+    font-size:85%;
+	margin: 50px auto;
+	text-align: center;
+}
+
+#orderList table{
+	border-collapse: collapse;
+}
+
+#orderList table tr td{
+	padding: 5px 25px;
+}

@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -216,6 +218,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MovieModels.cs" />
+    <Compile Include="Models\MovieOrderModel.cs" />
+    <Compile Include="Models\OrderModels.cs" />
+    <Compile Include="MovieControl\buyInfo.cs" />
     <Compile Include="MovieControl\MovieInfo.cs" />
     <Compile Include="MovieControl\TinyMovie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -227,12 +232,22 @@
     <Content Include="Content\jquery-ui.css" />
     <EmbeddedResource Include="Content\movie-index.css" />
     <Content Include="Content\movie-Info.css" />
+    <Content Include="Content\movie-pay.css" />
     <Content Include="Content\movie-seat.css" />
     <Content Include="Content\movie-selectCinema.css" />
+    <Content Include="Content\my-order.css" />
+    <Content Include="Content\success.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="Content\Site.css" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\step1.jpg" />
+    <Content Include="img\step2.jpg" />
+    <Content Include="img\step3.jpg" />
+    <Content Include="img\step4.jpg" />
+    <Content Include="img\交易成功.png" />
+    <Content Include="img\付款二维码.png" />
     <Content Include="img\已售.png" />
     <Content Include="img\已选.png" />
     <Content Include="img\空座.png" />
@@ -281,7 +296,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -326,6 +343,10 @@
     <Content Include="Views\Movie\MovieInfo.cshtml" />
     <Content Include="Views\Movie\selectCinema.cshtml" />
     <Content Include="Views\Movie\selectSeat.cshtml" />
+    <Content Include="Views\Movie\pay.cshtml" />
+    <Content Include="Views\Movie\success.cshtml" />
+    <Content Include="Views\Movie\orderList.cshtml" />
+    <Content Include="Views\Movie\getTicketFlow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

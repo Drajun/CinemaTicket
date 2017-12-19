@@ -1,0 +1,38 @@
+#movieAndCinemaInfo table tr td,#QRCode table tr td{
+	font-weight: bold;
+	font-size: 22px;
+	padding-right:15px ;
+	
+}
+
+#movieAndCinemaInfo,#QRCode{
+	float: left;
+	width: 630px;
+	margin-left:auto ;
+	margin-right: auto;
+	margin-bottom: 70px;
+	margin-top: 30px;
+}
+
+#QRCode{
+    width:500px;
+}
+
+#cancelBtn a{
+	margin-right: 25px;
+	color: black;
+	border-radius: 10px;
+	background-color: orangered;
+	padding: 5px 15px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#cancelBtn{
+	width: 400px;
+    margin-bottom:50px;
+}
+
+#dataForm{
+    display:none;
+}

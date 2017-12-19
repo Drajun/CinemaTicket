@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>电影购票</title>
+    <link href="~/img/logo.png" rel="shortcut icon" />
+    <title>电影汇</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     
@@ -24,8 +25,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("主页", "Index", "Movie")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
+                    <li>@Html.ActionLink("取票流程", "getTicketFlow", "Movie")</li>
                     <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+                    @if (User.IsInRole("ordinary"))
+                    {
+                        <li>@Html.ActionLink("购物车", "shoppingCart", "Movie")</li>
+                    }
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +40,7 @@
     <div class="container body-content">
         @RenderBody()
         <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+            <p>&copy; @DateTime.Now.Year - 电影汇售票系统</p>
         </footer>
     </div>
 

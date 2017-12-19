@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace CinemaTicket.Controllers
 {
     public class MovieController : Controller
     {
         private MovieDBContext db = new MovieDBContext();
+        private MovieOrderModel db_order = new MovieOrderModel();
         //自动填充
         [AllowAnonymous]
         public ActionResult AutoComplete(string term)
@@ -137,7 +139,7 @@ namespace CinemaTicket.Controllers
             }
         }
 
-        public ActionResult selectSeat(string date, string cinema, int? id)
+        public ActionResult selectSeat(string date, string cinema, int? id,string area)
         {
             if (String.IsNullOrEmpty(date) || String.IsNullOrEmpty(cinema) || id==null)
             {
@@ -149,8 +151,90 @@ namespace CinemaTicket.Controllers
                             where m.id == id
                             select m;
 
-            ViewBag.cinemaAndTime = date + "+" + cinema;
+            ViewBag.cinemaAndTime = date + "+" + cinema+"+"+area;
             return View(movieByID);
+        }
+
+
+        [Authorize(Roles = "ordinary")]
+        public ActionResult pay(int? id,string movieName,string playTime,string cinemaName, decimal? movieTotalPrice,string seats,string area)
+        {
+            if (id==null || String.IsNullOrEmpty(movieName) || String.IsNullOrEmpty(playTime)|| String.IsNullOrEmpty(cinemaName)|| movieTotalPrice==null||String.IsNullOrEmpty(seats)||String.IsNullOrEmpty(area))
+            {
+                Index(null, null, null);
+                return View("Index");
+            }
+            else
+            {
+                buyInfo buy = new buyInfo(id,movieName, playTime, cinemaName, movieTotalPrice, seats, area);
+                ViewBag.buyInfo = buy;
+
+                var movieByID = from m in db.Movies
+                                where m.id == id
+                                select m;
+
+                return View(movieByID);
+            }
+            
+        }
+
+        [Authorize(Roles = "ordinary")]
+        public ActionResult success(int? movieID,string playTime, string cinemaName, decimal? movieTotalPrice, string seats, string area,string movieName)
+        {
+            if(movieID==null||String.IsNullOrEmpty(playTime) || String.IsNullOrEmpty(cinemaName) || movieTotalPrice==null|| String.IsNullOrEmpty(seats) || String.IsNullOrEmpty(area) || String.IsNullOrEmpty(movieName))
+            {
+                Index(null, null, null);
+                return View("Index");
+            }
+            else
+            {
+                //取票号
+                int getNum = ((int)movieID + cinemaName.GetHashCode() + playTime.GetHashCode() + seats.GetHashCode()) * -1 / 10000;
+                //当前用户ID
+                string userID = User.Identity.GetUserId();
+
+                try
+                {
+                    //将订单保存
+                    OrderModels order = new OrderModels();
+                    order.Id = -1;
+                    order.movieID = (int)movieID;
+                    order.playTimes = playTime;
+                    order.cinemaName = cinemaName;
+                    order.totalPrice = (decimal)movieTotalPrice;
+                    order.seats = seats;
+                    order.area = area;
+                    order.movieName = movieName;
+                    order.purchaseDate = DateTime.Now;
+                    order.getNum = getNum.ToString();
+                    order.buyer = userID;
+                    db_order.OrderModels.Add(order);
+                    db_order.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message.ToString());
+                }
+
+                ViewBag.getNum = getNum;
+                return View();
+            }
+            
+        }
+
+        [Authorize(Roles = "ordinary")]
+        public ActionResult orderList()
+        {
+            string buyerID= User.Identity.GetUserId();
+            var myOrder = from o in db_order.OrderModels
+                          where o.buyer == buyerID
+                          select o;
+            return View(myOrder);
+        }
+
+        public ActionResult getTicketFlow()
+        {
+            return View();
         }
     }
 }

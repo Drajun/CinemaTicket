@@ -8,6 +8,9 @@ using System.Web;
 
 namespace CinemaTicket.Models
 {
+    /// <summary>
+    /// 电影信息
+    /// </summary>
     public class MovieModels
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -38,7 +41,7 @@ namespace CinemaTicket.Models
         }
 
         [Required]
-        [Display(Name = "上映地区")]
+        [Display(Name = "拍摄地区")]
         public string area
         {
             get;set;
@@ -68,7 +71,95 @@ namespace CinemaTicket.Models
         }
     }
 
+    /// <summary>
+    /// 订单信息
+    /// 已迁移至MovieOrderModel
+    /// </summary>
+    #region 订单模型
+    /*public class MovieOrder
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id
+        {
+            get; set;
+        }
+
+        [Required]
+        [Display(Name ="电影ID")]
+        public int movieID
+        {
+            get;set;
+        }
+
+        [Required]
+        [Display(Name ="购买者ID")]
+        public string buyer
+        {
+            get;set;
+        }
+
+        [Required]
+        [Display(Name ="影院名称")]
+        public string cinemaName
+        {
+            get;set;
+        }
+
+        [Required]
+        [Display(Name ="影院地区")]
+        public string area
+        {
+            get;set;
+        }
+
+        [Required]
+        [Display(Name ="座位")]
+        public string seats
+        {
+            set;get;
+        }
+
+        [Required]
+        [Display(Name ="场次")]
+        public string playTime
+        {
+            get;set;
+        }
+
+        [Required]
+        [Display(Name ="购买日期")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime purchaseDate
+        {
+            get;set;
+        }
+
+        [Required]
+        [DataType(DataType.Currency)]
+        [Display(Name ="总价")]
+        public decimal totalPrice
+        {
+            get;set;
+        }
+
+        [Required]
+        [Display(Name ="取票号")]
+        public string getNum
+        {
+            get;set;
+        }
+
+        [Display(Name ="备注")]
+        public string remarks
+        {
+            get;set;
+        }
+    }*/
+    #endregion
+
     public class MovieDBContext : DbContext{
         public DbSet<MovieModels> Movies { get; set; }
+        //public DbSet<MovieOrder> Orders { get; set; }
     }
 }

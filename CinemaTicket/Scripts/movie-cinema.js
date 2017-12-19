@@ -108,10 +108,10 @@ function areaClick() {
 function selectSeatClick() {
     $('.seat').on('click', function () {
         var t = $('.date li .active').attr('title') + "-" + $(this).attr('title');
-        //var a = $('.area li .active').text();
+        var a = $('.area li .active').text();
         var c = $('.cinema li .active').text();
         var id = $('#movieID').text();
-        var u = "?date=" + t + "&cinema=" + c + "&id=" + id;
+        var u = "?date=" + t + "&cinema=" + c + "&id=" + id+"&area="+a;
         var href = "/Movie/selectSeat";
         window.location.href = href + u
     });

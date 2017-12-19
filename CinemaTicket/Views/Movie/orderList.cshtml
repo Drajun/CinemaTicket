@@ -1,0 +1,39 @@
+﻿@model IEnumerable < CinemaTicket.Models.OrderModels>
+
+@{
+    ViewBag.Title = "orderList";
+    Layout = "~/Views/Shared/_Layout - Movie.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/my-order.css" />
+
+<h2>我的订单列表</h2>
+<div id="orderList">
+    <table border="1" class="table table-bordered table-striped">
+        <tr>
+            <th>片名</th>
+            <th>场次</th>
+            <th>座位</th>
+            <th>影院</th>
+            <th>地区</th>
+            <th>总价</th>
+            <th>购买时间</th>
+            <th>备注</th>
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.movieName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.playTimes)</td>
+                    <td>@Html.DisplayFor(modelItem => item.seats)</td>
+                    <td>@Html.DisplayFor(modelItem => item.cinemaName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.area)</td>
+                    <td>@Html.DisplayFor(modelItem => item.totalPrice)</td>
+                    <td>@Html.DisplayFor(modelItem => item.purchaseDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.remarks)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

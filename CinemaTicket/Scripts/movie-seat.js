@@ -31,7 +31,6 @@
 
                 /*计算总价*/
                 var price = parseFloat($('#price').text().substring(1));
-                alert($('#price').text().substring(1));
                 var totalPrice = price * $('#isSeatChecked span').length;
                 $('#totalPrice span').text("￥" + totalPrice);
 
@@ -51,20 +50,22 @@ function shopCartClick() {
 /*购买点击事件*/
 function buyClick(type) {
     var movieID = $('#movieID').text();
+    var movieName=$('#movieName').text();
     var movieTime = $('#movieTime').text();
     var cinemaName = $('#cinemaName').text();
     var movieTotalPrice = $('#totalPrice span').text().substring($('#totalPrice span').text().indexOf("￥") + 1);
+    var cinemaArea = $('#cinemaArea').text();
 
     var seats = "";
     $('#isSeatChecked').find('span').each(function () {
         seats += $(this).attr('title') + ";";
     });
 
-    var para = "?id=" + movieID + "&movieTime=" + movieTime + "&cinemaName=" + cinemaName + "&movieTotalPrice=" + movieTotalPrice + "&seats=" + seats;
+    var para = "?id=" + movieID +"&movieName="+movieName+ "&playTime=" + movieTime + "&cinemaName=" + cinemaName + "&movieTotalPrice=" + movieTotalPrice + "&seats=" + seats + "&area=" + cinemaArea;
     console.log(para);
 
     if (type == "buy") {
-        window.location.href = "payMent" + para;
+        window.location.href = "pay" + para;
     }
     else {
         window.location.href = "" + para;

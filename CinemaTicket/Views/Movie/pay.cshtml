@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CinemaTicket.Models.MovieModels>
+@{
+    ViewBag.Title = "pay";
+    Layout = "~/Views/Shared/_Layout - Movie.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/movie-pay.css" />
+
+<div id="movieAndCinemaInfo">
+    <table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td rowspan="6">
+                        <img src="~/@Html.DisplayFor(modelItem => item.poster)" width="160" height="250" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>片名：</td>
+                    <td>@Html.DisplayFor(modelItem => item.name)</td>
+                </tr>
+            }
+                    
+        <tr>
+            <td>影院：</td>
+            <td>@ViewBag.buyInfo.cinemaName</td>
+        </tr>
+        <tr>
+            <td>地区：</td>
+            <td>@ViewBag.buyInfo.area</td>
+        </tr>
+        <tr>
+            <td>场次：</td>
+            <td>@ViewBag.buyInfo.playTime</td>
+        </tr>
+        <tr>
+            <td>总价：</td>
+            <td>@ViewBag.buyInfo.movieTotalPrice</td>
+        </tr>
+
+    </table>
+</div>
+
+<div id="QRCode">
+    <table>
+        <tr>
+            <td><img onclick="ChangeSuccess();" src="~/img/付款二维码.png" width="160" height="250"  /></td>
+            <td>
+                请扫描左边二维码<br />并完成付款
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="cancelBtn">
+    <a href="javascript:window.history.back();">返回上一页</a>
+    <a href="javascript:window.opener=null;window.close();">取消订单</a>
+</div>
+
+<form id="dataForm" method="post" action="/Movie/success">
+    <input type="text" name="movieID" value="@ViewBag.buyInfo.movieID"/>
+    <input type="text" name="movieName" value="@ViewBag.buyInfo.movieName" />
+    <input type="text" name="playTime" value="@ViewBag.buyInfo.playTime"/>
+    <input type="text" name="cinemaName" value="@ViewBag.buyInfo.cinemaName" />
+    <input type="text" name="movieTotalPrice" value="@ViewBag.buyInfo.movieTotalPrice" />
+    <input type="text" name="seats" value="@ViewBag.buyInfo.seats"/>
+    <input type="text" name="area" value="@ViewBag.buyInfo.area" />
+</form>
+
+<script type="text/javascript">
+    function ChangeSuccess() {
+        $('#dataForm').submit();
+    }
+</script>

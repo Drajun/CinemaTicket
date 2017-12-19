@@ -56,32 +56,11 @@
                 }
             </dd>
         *@
-        <dt>双因素身份验证:</dt>
+        <dt>我的订单:</dt>
         <dd>
             <p>
-                没有配置双因素身份验证提供程序。有关设置此 ASP.NET 应用程序
-                以支持双因素身份验证的详细信息，请参阅<a href="http://go.microsoft.com/fwlink/?LinkId=403804">此文</a>。
+                查看我的电影购买记录:[ <a href="/Movie/orderList">订单列表</a> ]
             </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>已启用
-                        <input type="submit" value="禁用" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>已禁用
-                        <input type="submit" value="启用" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
         </dd>
     </dl>
 </div>
