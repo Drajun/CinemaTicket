@@ -79,14 +79,8 @@ namespace CinemaTicket.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    if (HttpContext.User.IsInRole("admin")) {
-                        return RedirectToLocal("/MovieManage/Index");
-                    }
-                    else
-                    {
-                        return RedirectToLocal(returnUrl);
-                    }
-                    
+                    MovieController.orders.Clear();
+                    return RedirectToLocal(returnUrl);                    
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

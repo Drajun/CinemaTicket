@@ -241,7 +241,7 @@ namespace CinemaTicket.Controllers
             
         }
 
-        private static Dictionary<string, buyInfo> orders = new Dictionary<string, buyInfo>();
+        public static Dictionary<string, buyInfo> orders = new Dictionary<string, buyInfo>();
         private static List<buyInfo> buyInfoList = null;
         [Authorize(Roles = "ordinary")]
         public ActionResult shoppingCart(int? id, string movieName, string playTime, string cinemaName, decimal? movieTotalPrice, string seats, string area)
