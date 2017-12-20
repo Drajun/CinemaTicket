@@ -8,6 +8,24 @@
 	border-collapse: collapse;
 }
 
+#orderList table tr th{
+    text-align:center;
+}
+
 #orderList table tr td{
 	padding: 5px 25px;
+}
+
+#submitOrder{
+	display: block;
+	width: 100px;
+	text-align: center;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+	margin: 20px auto;
+	
+	background-color: orangered;
+	border-radius: 10px;
+	padding: 5px 20px;
 }

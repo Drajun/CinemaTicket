@@ -145,14 +145,32 @@ namespace CinemaTicket.Controllers
             {
                 Index(null, null, null);
                 return View("Index");
-            }
-            //获取与id相符的电影
-            var movieByID = from m in db.Movies
-                            where m.id == id
-                            select m;
+            }else
+            {
+                //获取与id相符的电影
+                var movieByID = from m in db.Movies
+                                where m.id == id
+                                select m;
 
-            ViewBag.cinemaAndTime = date + "+" + cinema+"+"+area;
-            return View(movieByID);
+                ViewBag.cinemaAndTime = date + "+" + cinema + "+" + area;
+
+                //获取已售座位
+                var sellSeats = from s in db_order.OrderModels
+                                where s.movieID == (int)id && s.cinemaName == cinema && s.playTimes == date&&s.area==area
+                                select s.seats;
+                List<string> soldSeats = new List<string>();
+                foreach(string seat in sellSeats)
+                {
+                    foreach(string item in seat.Split(';'))
+                    {
+                        soldSeats.Add(item);
+                    }
+                }
+                ViewBag.soldSeats = soldSeats;
+
+                return View(movieByID);
+            }
+            
         }
 
 
@@ -179,6 +197,7 @@ namespace CinemaTicket.Controllers
         }
 
         [Authorize(Roles = "ordinary")]
+        [HttpPost]
         public ActionResult success(int? movieID,string playTime, string cinemaName, decimal? movieTotalPrice, string seats, string area,string movieName)
         {
             if(movieID==null||String.IsNullOrEmpty(playTime) || String.IsNullOrEmpty(cinemaName) || movieTotalPrice==null|| String.IsNullOrEmpty(seats) || String.IsNullOrEmpty(area) || String.IsNullOrEmpty(movieName))
@@ -222,6 +241,76 @@ namespace CinemaTicket.Controllers
             
         }
 
+        private static Dictionary<string, buyInfo> orders = new Dictionary<string, buyInfo>();
+        private static List<buyInfo> buyInfoList = null;
+        [Authorize(Roles = "ordinary")]
+        public ActionResult shoppingCart(int? id, string movieName, string playTime, string cinemaName, decimal? movieTotalPrice, string seats, string area)
+        {
+            if (id == null || String.IsNullOrEmpty(movieName) || String.IsNullOrEmpty(playTime) || String.IsNullOrEmpty(cinemaName) || movieTotalPrice == null || String.IsNullOrEmpty(seats) || String.IsNullOrEmpty(area))
+            {
+                buyInfoList = new List<buyInfo>(orders.Values);
+                ViewBag.buyInfoList = buyInfoList;
+                return View();
+            }
+            else
+            {
+                buyInfo buy = new buyInfo(id, movieName, playTime, cinemaName, movieTotalPrice, seats, area);
+                buy.thisID = ((id.GetHashCode() + cinemaName.GetHashCode() + seats.GetHashCode())<0? (id.GetHashCode() + cinemaName.GetHashCode() + seats.GetHashCode()) * -1 / 10000: (id.GetHashCode() + cinemaName.GetHashCode() + seats.GetHashCode())/10000).ToString();
+                orders.Add(buy.thisID, buy);
+                buyInfoList = new List<buyInfo>(orders.Values);
+                ViewBag.buyInfoList = buyInfoList;
+                return View();
+            }
+        }
+
+
+        [Authorize(Roles = "ordinary")]
+        [HttpGet]
+        public ActionResult success(string orderList)
+        {
+            if (string.IsNullOrEmpty(orderList))
+            {
+                Index(null, null, null);
+                return View("Index");
+            }
+            else
+            {
+                string[] list = orderList.Split('-');
+                //取票号
+                int getNum = orderList.GetHashCode()<0? orderList.GetHashCode() * -1/10000: orderList.GetHashCode()/10000;
+                //当前用户ID
+                string userID = User.Identity.GetUserId();
+
+                foreach (string item in list)
+                {                    
+                    
+                        //将订单保存
+                        OrderModels order = new OrderModels();
+                        order.Id = -1;
+                        order.movieID = orders[item].movieID;
+                        order.playTimes = orders[item].playTime;
+                        order.cinemaName = orders[item].cinemaName;
+                        order.totalPrice = orders[item].movieTotalPrice;
+                        order.seats = orders[item].seats;
+                        order.area = orders[item].area;
+                        order.movieName = orders[item].movieName;
+                        order.purchaseDate = DateTime.Now;
+                        order.getNum = getNum.ToString();
+                        order.buyer = userID;
+                        db_order.OrderModels.Add(order);
+                        db_order.SaveChanges();
+                    
+                    
+                        //Console.WriteLine(e.Message.ToString());
+                    
+                    orders.Remove(item);
+                }
+                ViewBag.getNum = getNum;
+                return View();
+            }
+            
+        }
+
         [Authorize(Roles = "ordinary")]
         public ActionResult orderList()
         {
@@ -230,6 +319,16 @@ namespace CinemaTicket.Controllers
                           where o.buyer == buyerID
                           select o;
             return View(myOrder);
+        }
+
+        [Authorize(Roles ="ordinary")]
+        public ActionResult deleteOrder(string orderID)
+        {
+            if (!String.IsNullOrEmpty(orderID)){
+                orders.Remove(orderID);
+            }
+            shoppingCart(null, null, null, null, null, null,null);
+            return View("shoppingCart");
         }
 
         public ActionResult getTicketFlow()

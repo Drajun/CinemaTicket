@@ -38,7 +38,15 @@
                         <td>@i&nbsp;&nbsp;&nbsp;&nbsp;</td>
                         @for (int j = 1; j < 13; j++)
                         {
-                            <td><div class="empty" title="@i,@j"></div></td>
+                            string s = i + "," + j;
+                            if (ViewBag.soldSeats.Contains(s))
+                            {
+                                <td><div class="sell" title="@i,@j"></div></td>
+                            }
+                            else
+                            {
+                                <td><div class="empty" title="@i,@j"></div></td>
+                            }
                         }
                     </tr>
                 }

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "shoppingCart";
+    Layout = "~/Views/Shared/_Layout - Movie.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/my-order.css" />
+<h2>我的购物车</h2>
+<br/>
+<div id="cartList">
+    <table border="1" class="table table-bordered table-striped">
+        <tr>
+            <th>片名</th>
+            <th>场次</th>
+            <th>座位</th>
+            <th>影院</th>
+            <th>地区</th>
+            <th>总价</th>
+            <th>备注</th>
+            <th>全选<input id="allCheck" type="checkbox" /></th>
+            <th></th>
+        </tr>
+        <tbody>
+            @if (ViewBag.buyInfoList != null)
+            {
+                foreach (CinemaTicket.MovieControl.buyInfo item in ViewBag.buyInfoList)
+                {
+                    if (item != null)
+                    {
+                        <tr>
+                            <td>@item.movieName</td>
+                            <td>@item.playTime</td>
+                            <td>@item.seats</td>
+                            <td>@item.cinemaName</td>
+                            <td>@item.area</td>
+                            <td>@item.movieTotalPrice</td>
+                            <td></td>
+                            <td>&nbsp;&nbsp;&nbsp;<input class="checkOrder" type="checkbox" value="@item.thisID" /></td>
+                            <td><a href="/Movie/deleteOrder?orderID=@item.thisID">删除</a></td>
+                        </tr>
+                    }
+                }
+            }
+            
+        </tbody>
+    </table>
+    <a onclick="submitOrder();" id="submitOrder">立即购买</a>
+</div>

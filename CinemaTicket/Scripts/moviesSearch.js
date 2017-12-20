@@ -2,7 +2,7 @@
     //Ajax搜索
     var ajaxFormSubmit = function () {
         $('.typeTags li a').removeClass('active');
-        $('.area li a:first').addClass('active');
+        $('.movie-area li a:first').addClass('active');
         $('.type li a:first').addClass('active');
 
         //获取表单对象
@@ -61,7 +61,7 @@ function typeSearch(searchStr, searchType) {
         var options = {
             url: "/Movie",
             type: "get",
-            data: { typeString: searchStr,areaString:$(".area li a[class='active']").text() }
+            data: { typeString: searchStr, areaString: $(".movie-area li a[class='active']").text() }
         };
     } else {
         var options = {

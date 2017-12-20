@@ -31,6 +31,10 @@
                     {
                         <li>@Html.ActionLink("购物车", "shoppingCart", "Movie")</li>
                     }
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("电影管理", "Index", "MovieManage")</li>
+                    }
 
                 </ul>
                 @Html.Partial("_LoginPartial")

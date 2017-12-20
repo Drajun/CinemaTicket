@@ -34,14 +34,14 @@
             <br />
             <br />
             <span class="tagName">地区：</span>
-            <ul class="typeTags area">
+            <ul class="typeTags movie-area">
                 <li>
-                    <a class="active" onclick="typeSearch(null,'area');">全部</a>
+                    <a class="active" onclick="typeSearch(null, 'movie-area');">全部</a>
                 </li>
                 @foreach (var item in ViewBag.movieArea)
                 {
                     <li>
-                        <a onclick="typeSearch('@item','area');">@item</a>
+                        <a onclick="typeSearch('@item','movie-area');">@item</a>
                     </li>
                 }
 

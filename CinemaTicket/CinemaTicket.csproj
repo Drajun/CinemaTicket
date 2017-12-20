@@ -295,6 +295,7 @@
     <Content Include="Scripts\movie-seat.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\shoppingcart.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -347,6 +348,7 @@
     <Content Include="Views\Movie\success.cshtml" />
     <Content Include="Views\Movie\orderList.cshtml" />
     <Content Include="Views\Movie\getTicketFlow.cshtml" />
+    <Content Include="Views\Movie\shoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

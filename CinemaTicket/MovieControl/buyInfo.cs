@@ -14,6 +14,7 @@ namespace CinemaTicket.MovieControl
         public decimal movieTotalPrice;
         public string seats;
         public string area;
+        public string thisID { get; set; }
 
         public buyInfo(int? movieID,string movieName, string playTime, string cinemaName, decimal? movieTotalPrice, string seats,string area)
         {

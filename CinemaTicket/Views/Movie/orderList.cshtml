@@ -17,7 +17,7 @@
             <th>地区</th>
             <th>总价</th>
             <th>购买时间</th>
-            <th>备注</th>
+            <th>取票码</th>
         </tr>
         <tbody>
             @foreach (var item in Model)
@@ -30,7 +30,7 @@
                     <td>@Html.DisplayFor(modelItem => item.area)</td>
                     <td>@Html.DisplayFor(modelItem => item.totalPrice)</td>
                     <td>@Html.DisplayFor(modelItem => item.purchaseDate)</td>
-                    <td>@Html.DisplayFor(modelItem => item.remarks)</td>
+                    <td>@Html.DisplayFor(modelItem => item.getNum)</td>
                 </tr>
             }
         </tbody>

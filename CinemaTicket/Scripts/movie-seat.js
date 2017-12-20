@@ -68,6 +68,6 @@ function buyClick(type) {
         window.location.href = "pay" + para;
     }
     else {
-        window.location.href = "" + para;
+        window.location.href = "shoppingCart" + para;
     }
 }
